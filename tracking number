@@ -1,0 +1,37 @@
+// App.js
+
+import React, { useState } from 'react';
+import './App.css';
+
+function App() {
+  const [trackingNumber, setTrackingNumber] = useState('');
+  const [submittedTrackingNumber, setSubmittedTrackingNumber] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmittedTrackingNumber(trackingNumber);
+    // Here you can add logic to handle the submission, such as sending the tracking number to the server
+  };
+
+  return (
+    <div className="App">
+      <h1>Courier Package Tracker</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="trackingNumber">Enter Tracking Number:</label>
+        <input
+          type="text"
+          id="trackingNumber"
+          value={trackingNumber}
+          onChange={(e) => setTrackingNumber(e.target.value)}
+          placeholder="Enter tracking number"
+        />
+        <button type="submit">Track</button>
+      </form>
+      {submittedTrackingNumber && (
+        <p>Tracking number {submittedTrackingNumber} submitted!</p>
+      )}
+    </div>
+  );
+}
+
+export default App;
